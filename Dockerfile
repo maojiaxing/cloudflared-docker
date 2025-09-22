@@ -1,4 +1,4 @@
-FROM cloudflare/cloudflared:2025.9.0
+FROM cloudflare/cloudflared:latest
 
 LABEL org.opencontainers.image.source="https://github.com/maojiaxing/cloudflared-docker"
 
