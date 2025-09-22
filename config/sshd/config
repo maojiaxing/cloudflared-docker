@@ -1,0 +1,9 @@
+Port {{PORT}}
+AddressFamily any
+ListenAddress 0.0.0.0
+ListenAddress ::
+
+PermitRootLogin no
+
+PasswordAuthentication yes
+PermitEmptyPasswords no
