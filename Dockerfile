@@ -11,7 +11,7 @@ COPY entrypoint.sh /entrypoint.sh
 COPY reboot.sh /usr/local/sbin/reboot
 
 RUN apk update && \
-    apk add --no-cache tzdata openssh-server sudo curl ca-certificates wget vim net-tools supervisor cron unzip iputils-ping telnet git iproute2 && \
+    apk add --no-cache tzdata openssh-server sudo curl ca-certificates wget vim net-tools supervisor cron unzip iputils-ping telnet git iproute2 jq gettext tzdata&& \
     rm -rf /var/cache/apk/* && \
     mkdir /var/run/sshd && \
     sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config && \
