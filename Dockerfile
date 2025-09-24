@@ -46,6 +46,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     chmod +x /usr/local/sbin/reboot && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone
+
+RUN adduser --disabled-password --home "/home/$USER" --shell /bin/bash --gecos "" "$USER"
+RUN echo "$USER:$PASSWORD" | chpasswd
+RUN echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USER && chmod 440 /etc/sudoers.d/$USER
+RUN mkdir -p /var/run/sshd && echo "Port $PORT" >> /etc/ssh/sshd_config \ 
+    && echo "PermitRootLogin no" >> /etc/ssh/sshd_config && chmod 600 /etc/ssh/sshd_config && chown root:root /etc/ssh/sshd_config
     
 USER $USER
 
