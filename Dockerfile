@@ -46,6 +46,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     chmod +x /usr/local/sbin/reboot && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone
+    
+USER=$USER
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/sbin/sshd", "-D" "-p" "$PORT"]
