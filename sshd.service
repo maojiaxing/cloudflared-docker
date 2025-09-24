@@ -1,5 +1,5 @@
 [program:sshd]
-command=/usr/sbin/sshd -D -p %(ENV_PORT)s
+command=/usr/sbin/sshd -D -p $PORT
 autostart=true
 autorestart=true
 startretries=3
