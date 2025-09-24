@@ -1,5 +1,4 @@
 FROM cloudflare/cloudflared:latest AS cloudflared-builder
-RUN cp /usr/local/bin/cloudflared /tmp/cloudflared
 
 FROM debian:12-slim
 
@@ -18,7 +17,7 @@ COPY sshd.service /tmp/templates/sshd.service
 COPY cloudflared.service /tmp/templates/cloudflared.service
 COPY entrypoint.sh /entrypoint.sh
 COPY reboot.sh /usr/local/sbin/reboot
-COPY --from=cloudflared-builder /tmp/cloudflared /usr/local/bin/
+COPY --from=cloudflared-builder /usr/local/bin/cloudflared /usr/local/bin/
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     openssh-server \
