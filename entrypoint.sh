@@ -25,3 +25,4 @@ cp /tmp/supervisord.conf "$SUPERVISORD_CONF_DIR/"
 envsubst '$USER' < /tmp/sshd.service > "$SUPERVISORD_CONF_DIR/conf.d/sshd.service"
 envsubst '$USER' < /tmp/cloudflare.service > "$SUPERVISORD_CONF_DIR/conf.d/cloudflare.service"
 
+exec supervisord -c /home/nonroot/.config/supervisor/supervisord.conf
