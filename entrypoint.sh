@@ -18,9 +18,9 @@ CREDENTIALS_DIR="/home/$USER/.config/cloudflared"
 CREDENTIALS_FILE="$CREDENTIALS_DIR/credentials.json"
 
 if [ ! -d "$CONFIG_DIR" ]; then
-  mkdir -p "$CONFIG_DIR"
-  mkdir -p "$SUPERVISORD_CONF_DIR"
-  mkdir -p "$SUPERVISORD_CONF_DIR/conf.d"
+    mkdir -p "$CONFIG_DIR"
+    mkdir -p "$SUPERVISORD_CONF_DIR"
+    mkdir -p "$SUPERVISORD_CONF_DIR/conf.d"
 fi
 
 if [ -z "$TUNNEL_TOKEN" ]; then
