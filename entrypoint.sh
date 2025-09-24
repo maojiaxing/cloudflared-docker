@@ -2,13 +2,9 @@
 
 if ! id "$USER" >/dev/null 2>&1; then
     echo "Creating user: $USER"
-    adduser \
-      --disabled-password \
-      --home "$USER_HOME" \
-      --shell /bin/bash \
-      --gecos "" \
-      "$USER"
+    useradd -m -s /bin/bash $USER
     echo "$USER:$PASSWORD" | chpasswd
+    usermod -aG sudo $USER
     # 添加sudo权限
     echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
     echo 'Port $PORT' > /etc/ssh/sshd_config
