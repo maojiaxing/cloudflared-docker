@@ -15,7 +15,7 @@ if ! id "$USER" >/dev/null 2>&1; then
     echo 'PermitRootLogin no' >> /etc/ssh/sshd_config
     chmod 600 /etc/ssh/sshd_config
     chown root:root /etc/ssh/sshd_config
-    chmod 755 "$USER_HOME"
+    chmod 755 "/home/$USER"
 fi
 
 cp /tmp/bashrc "/home/$USER/.bashrc"
