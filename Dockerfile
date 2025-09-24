@@ -1,6 +1,6 @@
 FROM cloudflare/cloudflared:latest AS cloudflared-builder
 
-FROM debian:12-slim
+FROM ubuntu:latest
 
 LABEL org.opencontainers.image.source="https://github.com/maojiaxing/cloudflared-docker"
 
@@ -15,6 +15,7 @@ RUN mkdir -p /tmp/templates
 COPY supervisord.conf /tmp/supervisord.conf
 COPY sshd.service /tmp/sshd.service
 COPY cloudflared.service /tmp/cloudflared.service
+
 COPY .bashrc /tmp/bashrc
 COPY .profile /tmp/profile
 
@@ -53,7 +54,4 @@ RUN echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USER && chmod 440 /et
 RUN mkdir -p /var/run/sshd && echo "Port $PORT" >> /etc/ssh/sshd_config \ 
     && echo "PermitRootLogin no" >> /etc/ssh/sshd_config && chmod 600 /etc/ssh/sshd_config && chown root:root /etc/ssh/sshd_config
     
-USER $USER
-
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/usr/sbin/sshd", "-D" "-p" "$PORT"]
