@@ -12,9 +12,9 @@ ENV TZ=Asia/Shanghai \
 
 RUN mkdir -p /tmp/templates
 
-COPY supervisord.conf /tmp/templates/supervisord.conf
-COPY sshd.service /tmp/templates/sshd.service
-COPY cloudflared.service /tmp/templates/cloudflared.service
+COPY supervisord.conf /tmp/supervisord.conf
+COPY sshd.service /tmp/sshd.service
+COPY cloudflared.service /tmp/cloudflared.service
 COPY .bashrc /tmp/bashrc
 COPY .profile /tmp/profile
 
