@@ -39,14 +39,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gettext \ 
     tzdata && \
     rm -rf /var/lib/apt/lists/* && \
-    adduser -D "$USER" && \
-    sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config && \
-    sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config && \
-    mkdir /var/run/sshd && \
     chmod +x /usr/local/bin/cloudflared && \
     chmod +x /entrypoint.sh && \
     chmod +x /usr/local/sbin/reboot && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone
 
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/usr/sbin/sshd", "-D" "-p" "$PORT"]
  
