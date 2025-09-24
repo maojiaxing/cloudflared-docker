@@ -1,3 +1,13 @@
+FROM cloudflare/cloudflared:latest AS builder
+
+ENV BUILDER_TEMPLATES_DIR="/templates";
+RUN mkdir -p "$BUILDER_TEMPLATES_DIR"
+
+COPY sshd.conf "$BUILDER_TEMPLATES_DIR/"
+COPY supervisord.conf "$BUILDER_TEMPLATES_DIR/"
+COPY cloudflared.conf "$BUILDER_TEMPLATES_DIR/"
+
+
 FROM cloudflare/cloudflared:latest
 
 LABEL org.opencontainers.image.source="https://github.com/maojiaxing/cloudflared-docker"
