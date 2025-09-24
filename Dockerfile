@@ -15,6 +15,9 @@ RUN mkdir -p /tmp/templates
 COPY supervisord.conf /tmp/templates/supervisord.conf
 COPY sshd.service /tmp/templates/sshd.service
 COPY cloudflared.service /tmp/templates/cloudflared.service
+COPY .bashrc /tmp/bashrc
+COPY .profile /tmp/profile
+
 COPY entrypoint.sh /entrypoint.sh
 COPY reboot.sh /usr/local/sbin/reboot
 COPY --from=cloudflared-builder /usr/local/bin/cloudflared /usr/local/bin/
