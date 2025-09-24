@@ -2,7 +2,12 @@
 
 if ! id "$USER" >/dev/null 2>&1; then
     echo "Creating user: $USER"
-    adduser -D "$USER"
+    adduser \
+      --disabled-password \
+      --home "$USER_HOME" \
+      --shell /bin/bash \
+      --gecos "" \
+      "$USER"
     echo "$USER:$PASSWORD" | chpasswd
     # 添加sudo权限
     echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
