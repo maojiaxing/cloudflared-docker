@@ -26,7 +26,7 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
 
       - name: Set date-based tag
-        run: echo "DATE_TAG=$(date +'%y.%-m.%-d')" >> $GITHUB_ENV
+        run: echo "DATE_TAG=$(date +'%Y.%-m.%-d')" >> $GITHUB_ENV
 
       - name: Build and push multi-arch image
         uses: docker/build-push-action@v5
