@@ -29,10 +29,11 @@ fi
 echo "{\"TunnelToken\":\"$TUNNEL_TOKEN\"}" > "$CREDENTIALS_FILE"
 chown "$USER:$USER" "$CREDENTIALS_FILE"
 chmod 600 "$CREDENTIALS_FILE"
+chmod 644 "$USER_HOME/.config/supervisor/conf.d/*"
 
-cp /tmp/supervisord.conf "$SUPERVISORD_CONF_DIR/"
+envsubst '$USER' < /tmp/supervisord.conf > "$SUPERVISORD_CONF_DIR/supervisord.conf"
 envsubst '$USER $PORT' < /tmp/sshd.service > "$SUPERVISORD_CONF_DIR/conf.d/sshd.service"
 envsubst '$USER' < /tmp/cloudflared.service > "$SUPERVISORD_CONF_DIR/conf.d/cloudflared.service"
 chmod 755 /var/log/supervisor
 
-exec supervisord -c "/home/$USER/.config/supervisor/supervisord.conf"
+exec sudo -u "$USER" supervisord -c "/home/$USER/.config/supervisor/supervisord.conf"
