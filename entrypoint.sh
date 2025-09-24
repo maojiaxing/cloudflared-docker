@@ -1,23 +1,5 @@
 #!/usr/bin/env sh
 
-if ! id "$USER" >/dev/null 2>&1; then
-    echo "Creating user: $USER"
-    adduser \
-      --disabled-password \
-      --home "/home/$USER" \
-      --shell /bin/bash \
-      --gecos "" \
-      "$USER"
-    echo "$USER:$PASSWORD" | chpasswd
-    # 添加sudo权限
-    echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-    echo 'Port $PORT' > /etc/ssh/sshd_config
-    echo 'PermitRootLogin no' >> /etc/ssh/sshd_config
-    chmod 600 /etc/ssh/sshd_config
-    chown root:root /etc/ssh/sshd_config
-    chmod 755 "/home/$USER"
-fi
-
 cp /tmp/bashrc "/home/$USER/.bashrc"
 cp /tmp/profile "/home/$USER/.profile"
 
