@@ -8,7 +8,7 @@ ENV TZ=Asia/Shanghai \
     USER=cloudflare \
     PASSWORD=cloudflare!23 \
     PORT=22 \
-    TOKEN=''
+    TUNNEL_TOKEN=''
 
 RUN mkdir -p /tmp/templates
 
