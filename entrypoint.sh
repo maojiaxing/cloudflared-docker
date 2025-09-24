@@ -12,6 +12,9 @@ if ! id "$USER" >/dev/null 2>&1; then
     chown root:root /etc/ssh/sshd_config
 fi
 
+cp /tmp/bashrc "/home/$USER/.bashrc"
+cp /tmp/profile "/home/$USER/.profile"
+
 CONFIG_DIR="/home/$USER/.config"
 SUPERVISORD_CONF_DIR="$CONFIG_DIR/supervisor"
 CREDENTIALS_DIR="/home/$USER/.config/cloudflared"
