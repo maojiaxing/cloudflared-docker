@@ -4,7 +4,7 @@ if ! id "$USER" >/dev/null 2>&1; then
     echo "Creating user: $USER"
     adduser \
       --disabled-password \
-      --home "$USER_HOME" \
+      --home "/home/$USER" \
       --shell /bin/bash \
       --gecos "" \
       "$USER"
