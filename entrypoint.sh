@@ -44,4 +44,4 @@ envsubst '$USER $PORT' < /tmp/sshd.service > "$SUPERVISORD_CONF_DIR/conf.d/sshd.
 envsubst '$USER' < /tmp/cloudflared.service > "$SUPERVISORD_CONF_DIR/conf.d/cloudflared.service"
 chmod 755 /var/log/supervisor
 
-exec supervisord -c /home/nonroot/.config/supervisor/supervisord.conf
+exec supervisord -c "/home/$USER/.config/supervisor/supervisord.conf"
