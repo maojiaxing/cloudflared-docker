@@ -19,7 +19,7 @@ COPY cloudflared.service /tmp/cloudflared.service
 COPY .bashrc /tmp/bashrc
 COPY .profile /tmp/profile
 
-COPY entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY reboot.sh /usr/local/sbin/reboot
 COPY --from=cloudflared-builder /usr/local/bin/cloudflared /usr/local/bin/
 
@@ -43,9 +43,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tzdata && \
     rm -rf /var/lib/apt/lists/* && \
     chmod +x /usr/local/bin/cloudflared && \
-    chmod +x /entrypoint.sh && \
+    chmod +x /usr/local/bin/entrypoint.sh && \
     chmod +x /usr/local/sbin/reboot && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone
     
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
