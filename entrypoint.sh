@@ -5,6 +5,11 @@ if [ -z "$USER" ] || [ -z "$PASSWORD" ]; then
     exit 1
 fi
 
+if [ -z "$TUNNEL_TOKEN" ]; then
+    echo "错误：未提供TUNNEL_TOKEN环境变量"
+    exit 1
+fi
+
 echo "Creating user: $USER"
 useradd -m -s /bin/bash -G sudo "$USER"
 echo "$USER:$PASSWORD" | chpasswd
@@ -36,11 +41,6 @@ if [ ! -d "$CONFIG_DIR" ]; then
     mkdir -p "$CONFIG_DIR"
     mkdir -p "$SUPERVISORD_CONF_DIR"
     mkdir -p "$SUPERVISORD_CONF_DIR/conf.d"
-fi
-
-if [ -z "$TUNNEL_TOKEN" ]; then
-    echo "错误：未提供TUNNEL_TOKEN环境变量"
-    exit 1
 fi
 
 if [ ! -d "$CREDENTIALS_DIR" ]; then
