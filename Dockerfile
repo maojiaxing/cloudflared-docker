@@ -10,8 +10,6 @@ ENV TZ=Asia/Shanghai \
     PORT=22 \
     TUNNEL_TOKEN=''
 
-RUN mkdir -p /tmp/templates
-
 COPY supervisord.conf /tmp/supervisord.conf
 COPY sshd.service /tmp/sshd.service
 COPY cloudflared.service /tmp/cloudflared.service
