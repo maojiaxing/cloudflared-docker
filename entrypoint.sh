@@ -10,8 +10,8 @@ fi
 USER_HOME="/home/$USER"
 CONFIG_DIR="$USER_HOME/.config"
 SUPERVISORD_CONF_DIR="$CONFIG_DIR/supervisor"
-CREDENTIALS_DIR="$CONFIG_DIR/cloudflared"
-CREDENTIALS_FILE="$CREDENTIALS_DIR/credentials.json"
+# CREDENTIALS_DIR="$CONFIG_DIR/cloudflared"
+# CREDENTIALS_FILE="$CREDENTIALS_DIR/credentials.json"
 
 STATE_DIR="$USER_HOME/.local/state"
 SUPERVISOR_STATE_DIR="$STATE_DIR/supervisor"
@@ -33,15 +33,15 @@ cp /tmp/bashrc "$USER_HOME/.bashrc"
 cp /tmp/profile "$USER_HOME/.profile"
 
 mkdir -p "$SUPERVISORD_CONF_DIR/conf.d"
-mkdir -p "$CREDENTIALS_DIR"
+# mkdir -p "$CREDENTIALS_DIR"
 mkdir -p "$SUPERVISOR_STATE_DIR"
 
 chown -R "$USER:$USER" "$USER_HOME"
 
-chmod 700 "$CREDENTIALS_DIR"
+# chmod 700 "$CREDENTIALS_DIR"
 
-echo "{\"TunnelToken\":\"$TUNNEL_TOKEN\"}" > "$CREDENTIALS_FILE"
-chmod 600 "$CREDENTIALS_FILE" # 只有所有者可读写
+# echo "{\"TunnelToken\":\"$TUNNEL_TOKEN\"}" > "$CREDENTIALS_FILE"
+# chmod 600 "$CREDENTIALS_FILE" # 只有所有者可读写
 
 envsubst '$USER' < /tmp/supervisord.conf > "$SUPERVISORD_CONF_DIR/supervisord.conf"
 envsubst '$USER $PORT' < /tmp/sshd.service > "$SUPERVISORD_CONF_DIR/conf.d/sshd.service"
