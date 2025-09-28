@@ -1,5 +1,5 @@
 [program:cloudflared]
-command=/usr/local/bin/cloudflared tunnel run --credentials-file /home/$USER/.config/cloudflared/credentials.json
+command=/usr/local/bin/cloudflared tunnel run --token $TUNNEL_TOKEN
 autostart=true
 autorestart=true
 startretries=5
