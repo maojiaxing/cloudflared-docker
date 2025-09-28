@@ -45,7 +45,7 @@ chown -R "$USER:$USER" "$USER_HOME"
 
 envsubst '$USER' < /tmp/supervisord.conf > "$SUPERVISORD_CONF_DIR/supervisord.conf"
 envsubst '$USER $PORT' < /tmp/sshd.service > "$SUPERVISORD_CONF_DIR/conf.d/sshd.service"
-envsubst '$USER' < /tmp/cloudflared.service > "$SUPERVISORD_CONF_DIR/conf.d/cloudflared.service"
+envsubst '$USER $TUNNEL_TOKEN' < /tmp/cloudflared.service > "$SUPERVISORD_CONF_DIR/conf.d/cloudflared.service"
 
 chmod 644 "$SUPERVISORD_CONF_DIR/supervisord.conf"
 chmod 644 "$SUPERVISORD_CONF_DIR/conf.d/sshd.service"
